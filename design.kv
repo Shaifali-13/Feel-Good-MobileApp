@@ -1,0 +1,213 @@
+<LoginScreen>:
+    GridLayout:
+        cols: 1
+        GridLayout:
+
+            cols: 1
+            padding: 15, 15
+            spacing: 20, 20
+
+            Label:
+                text: "User Login"
+                font_size: "20sp"
+                
+            TextInput:
+                id: username
+                hint_text: "Username"
+                
+            TextInput:
+                id: password
+                password: True
+                hint_text: "Password"
+                
+            RelativeLayout:
+                Button:
+                    text: "Login"
+                    on_press: root.login(root.ids.username.text, root.ids.password.text)
+                    size_hint: 0.3, 0.5
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+                    background_color: 1,1,1,0
+                    opacity: 1 if self.state == 'normal' else 0.5
+                    color: 0, 0.9, 0, 1
+            
+            Label:
+                id: login_wrong
+                text: ""
+
+            
+        GridLayout:
+
+            cols: 2
+            size_hint: 0.2, 0.15
+            padding: 10,10
+            spacing: 10, 0
+
+            Button:
+                text: "Forgot Password?"
+                on_press: root.forgot_password()
+                background_color: 1,1,1,0
+                opacity: 1 if self.state == 'normal' else 0.5
+                color: 0.1, 0.7, 1
+                
+            Button:
+                text: "Sign Up!"
+                on_press: root.sign_up()
+                background_color: 1,1,1,0
+                opacity: 1 if self.state == 'normal' else 0.5
+                color: 0.1, 0.7, 1
+
+<SignUpScreen>:
+    GridLayout:
+        cols: 1
+        padding: 20, 20
+        spacing: 20, 20
+        
+
+        Label:
+            text: "Sign up for a space journey!"
+            color: 1, 1, 0, 1
+        
+        TextInput:
+            id: username
+            hint_text: "New Username"
+            padding: 10, 20
+            spacing: 10, 10
+            
+        TextInput:
+            id: password
+            password: True
+            hint_text: "New Password"
+            padding: 10, 20
+            spacing: 10, 10
+
+
+        Button:
+            text: "Submit"
+            on_press: root.add_user(root.ids.username.text, root.ids.password.text)
+            #the values entered in the username textbox can be accessed through 
+            #root.ids.username.text, where username is the id of the text input field,
+            #and '.text' gives the text entered by the user.
+            #same is with password
+            background_color: 1,1,1,0
+            opacity: 1 if self.state == 'normal' else 0.5
+            color: 0.1, 0.7, 1
+
+<SignUpSuccessScreen>:
+    GridLayout:
+        cols: 1
+        size_hint: 0.3, 0.7
+        pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+
+        Label:
+            text: "Sign up successful!"
+            font_size: "30sp"
+        
+        
+        Button:
+            text: "Login page"
+            on_press: root.login()
+            background_color: 1,1,1,0
+            opacity: 1 if self.state == 'normal' else 0.5
+            color: 0.1, 0.7, 1
+            font_size: "20sp"
+    
+
+<LoginScreenSuccess>:
+    GridLayout:
+        cols: 1
+        padding: 50, 50
+        spacing: 30, 30
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        
+        RelativeLayout:
+            ImageButton:
+                on_press: root.logout()
+                source: "logout_hover.png" if self.hovered else "logout_nothover.png"
+                size_hint: 0.4, 0.4
+                pos_hint: {'center_x': 0.95, 'center_y': 0.95}
+                # background_color: 1,1,1,0
+                # opacity: 1 if self.state == 'normal' else 0.5
+                # color: 0.1, 0.7, 1
+        
+        Label:
+            text: "How do you feel?"
+            color: 0, 1, 1, 1
+        
+        TextInput:
+            id: feelings
+            hint_text: "Things to try: happy, sad, unloved..."
+            
+        
+        Button:
+            text: "Enlighten me!"
+            on_press: root.get_quotes(root.ids.feelings.text)
+            background_color: 1,1,1,0
+            opacity: 1 if self.state == 'normal' else 0.5
+            color: 0.1, 0.7, 1
+        
+        ScrollView:
+            Label:
+                id: quote
+                text: ""
+                text_size: self.width, None
+                size_hint_y: None
+                height: self.texture_size[1]
+    
+<ForgotPasswordScreen>:
+    GridLayout:
+        cols: 1
+
+        Label: 
+            text: "Username"
+
+        TextInput:
+            id: username
+            hint_text: "Enter your username"
+        
+        Label:
+            text: "New Password"
+        
+        TextInput:
+            id: new_password
+            hint_text: "Enter your new password"
+        
+        Button:
+            text: "Change Password"
+            on_press: root.change_password(root.ids.username.text, root.ids.new_password.text)
+        
+        Label:
+            id: password_status
+            text: ""
+
+
+
+
+
+
+        
+
+
+
+
+<RootWidget>:
+    LoginScreen: 
+        name: "login_screen" 
+    
+    SignUpScreen:
+        name: "sign_up_screen"
+
+    SignUpSuccessScreen:
+        name: "sign_up_success_screen"
+    
+    LoginScreenSuccess:
+        name: "login_screen_success"
+
+    ForgotPasswordScreen:
+        name: "forgotPassword"
+
+
+    
+                    
+
+                
+                
